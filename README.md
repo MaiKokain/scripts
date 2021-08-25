@@ -1,0 +1,1 @@
+All Script that is Released in this [repository](https://github.com/MaiKokain/scripts). Are all Open Sourced. Credit is not Required If you Used Any of the code from one of the Script.
