@@ -174,7 +174,7 @@ end
 
 Functions.AutoFarm = function()
 
-    while RunService.Heartbeat:Wait() do
+    while task.wait() do
         local choice, branch = Functions.GetTrees()
         local treeNum = string.gsub(choice.Name, "Tree_", "")
 
