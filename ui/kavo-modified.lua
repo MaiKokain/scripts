@@ -39,7 +39,7 @@ function Kavo:DraggingEnabled(frame, parent)
         if input == dragInput and dragging then
             local delta = input.Position - mousePos
             -- parent.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
-            tween:Create(parent, TweenInfo.new(0.3, Enum.EasingStyle.Cubic, Enum.EasingDirection.In), {
+            tween:Create(parent, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
                 Position = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
             }):Play()
         end
