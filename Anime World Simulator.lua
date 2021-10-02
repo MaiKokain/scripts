@@ -10,10 +10,10 @@ _G.Config = {
     bush_type = "YZFruit"
 }
 
-setmetatable(_G.Config, {
-    __index = "Bruh",
-    __metatable = "Bruh"
-})
+-- setmetatable(_G.Config, {
+--     __index = "Bruh",
+--     __metatable = "Bruh"
+-- })
 
 FarmSection:NewToggle("Auto Kill Enemy", "Automatically kills enemy.", function(state)
     _G.Config.farm_ene = state
@@ -124,6 +124,8 @@ FarmSection:NewToggle("Auto Hit Bush", "Automatically Hit Bush. By Selected Type
     end
 end)
 
+
+--IGNORE
 --[[
     // Auto hatch
 
