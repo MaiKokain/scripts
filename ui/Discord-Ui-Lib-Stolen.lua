@@ -3124,6 +3124,10 @@ function DiscordLib:Window(text)
 						{BackgroundColor3 = Color3.fromRGB(114, 137, 228)}
 					):Play()
 				end)
+
+				TextBox.GetPropertyChangedSignal("Text"):Connect(function()
+					pcall(callback, TextBox.Text)
+				end)
 				
 				TextBox.FocusLost:Connect(function(ep)
 					TweenService:Create(
@@ -3134,7 +3138,7 @@ function DiscordLib:Window(text)
 					if ep then
 						pcall(callback, TextBox.Text)
 						if disapper then
-							for i = 0, #TextBox.Text do
+							for i = 1, #TextBox.Text do
 								TextBox.Text = string.gsub(TextBox.Text[i], '%a', '')
 								wait()
 							end
