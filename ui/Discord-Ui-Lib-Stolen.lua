@@ -3138,10 +3138,13 @@ function DiscordLib:Window(text)
 					if ep then
 						pcall(callback, TextBox.Text)
 						if disapper then
-							for i = 1, #TextBox.Text do
-								TextBox.Text = string.gsub(TextBox.Text[i], '%a', '')
-								wait()
-							end
+							TweenService:Create(
+								TextBox,
+								TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+								{ TextTransparency = 1 }
+							):Play()
+							wait(0.4)
+							TextBox.Text = ""
 						end
 					end
 				end)
