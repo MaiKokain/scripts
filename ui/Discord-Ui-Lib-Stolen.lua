@@ -338,13 +338,6 @@ function DiscordLib:Window(text)
 			minimized = not minimized
 		end
 	)
-
-    local UserInputService = game:GetService("UserInputService")
-    UserInputService.InputBegan:Connect(function(input, gameProcessedEvent)
-        if input.KeyCode == Enum.KeyCode.RightControl then
-            Discord.Enabled = not Discord.Enabled
-        end
-    end)
 	
 	local SettingsOpenBtn = Instance.new("TextButton")
 	local SettingsOpenBtnIco = Instance.new("ImageLabel")
@@ -3139,10 +3132,11 @@ function DiscordLib:Window(text)
 						{BackgroundColor3 = Color3.fromRGB(37, 40, 43)}
 					):Play()
 					if ep then
-						if #TextBox.Text > 0 then
-							pcall(callback, TextBox.Text)
-							if disapper then
-								TextBox.Text = ""
+						pcall(callback, TextBox.Text)
+						if disapper then
+							for i = 0, #TextBox.Text do
+								TextBox.Text = string.gsub(TextBox.Text[i], '%a', '')
+								wait()
 							end
 						end
 					end
