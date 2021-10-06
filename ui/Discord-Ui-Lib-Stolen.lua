@@ -3125,7 +3125,7 @@ function DiscordLib:Window(text)
 					):Play()
 				end)
 
-				TextBox.GetPropertyChangedSignal("Text"):Connect(function()
+				TextBox:GetPropertyChangedSignal("Text"):Connect(function()
 					pcall(callback, TextBox.Text)
 				end)
 				
