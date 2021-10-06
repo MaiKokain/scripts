@@ -3118,6 +3118,13 @@ function DiscordLib:Window(text)
 				TextBox.TextXAlignment = Enum.TextXAlignment.Left
 				
 				TextBox.Focused:Connect(function()
+					if TextBox.TextTransparency ~= 0 then
+						TweenService:Create(
+							TextBox,
+							TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+							{ TextTransparency = 0 }
+						):Play()
+					end
 					TweenService:Create(
 						TextboxFrameOutline,
 						TweenInfo.new(.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
