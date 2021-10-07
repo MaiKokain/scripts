@@ -2770,15 +2770,24 @@ function DiscordLib:Window(text)
 						Size = UDim2.new(0, 385, 0, 0)
 					},0.3)
 					utils:TweenObject(DropdownFrameMain, {
+<<<<<<< HEAD
 						Size = UDim2.new(0, 392, 0, 0)
 					}, 0.3)
 					utils:TweenObject(DropdownFrameMainOutline, {
+=======
+						Size = UDim2.new(0, 385, 0, 0)
+					}, 0.3)
+					utils:TweenObject(DropdownFrameOutline, {
+>>>>>>> b8754b4d039a8090777b7c65023e05ae5866273c
 						Size = UDim2.new(0, 396, 0, 0)
 					}, 0.3)
 					utils:TweenObject(Dropdown, {
 						Size = UDim2.new(0, 403, 0, 73)
 					}, 0.3)
+<<<<<<< HEAD
 
+=======
+>>>>>>> b8754b4d039a8090777b7c65023e05ae5866273c
 					-- DropItemHolder.Size = UDim2.new(0, 385, 0, 0)
 					-- DropdownFrameMain.Size = UDim2.new(0, 392, 0, 0)
 					-- DropdownFrameMainOutline.Size = UDim2.new(0, 396, 0, 0)
@@ -2787,7 +2796,11 @@ function DiscordLib:Window(text)
 					DropdownFrameMainOutline.Visible = false
 					-- ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
 					utils:TweenObject(ChannelHolder, {
+<<<<<<< HEAD
 						CanvasSize = UDim2.new(0, 0, 0, ChannelHolderLayout.AbsoluteContentSize.Y)
+=======
+						CanvasSize = UDim2.new(0, 385, 0, 0)
+>>>>>>> b8754b4d039a8090777b7c65023e05ae5866273c
 					},0.3)
 				end
 
@@ -2939,8 +2952,17 @@ function DiscordLib:Window(text)
 					end)
 
 					Item.MouseButton1Click:Connect(function()
+<<<<<<< HEAD
 						-- CurrentSelectedText.Text = Item.Name
 						pcall(callback, textadd)
+=======
+						for i = 0, #textadd do
+							CurrentSelectedText.Text = string.sub(textadd, 1, i)
+							wait(0.04)
+						end
+						-- CurrentSelectedText.Text = Item.Name
+						pcall(callback, Item.Name)
+>>>>>>> b8754b4d039a8090777b7c65023e05ae5866273c
 						utils:TweenObject(Dropdown, {
 							Size = UDim2.new(0, 403, 0, 73)
 						}, 0.5)
