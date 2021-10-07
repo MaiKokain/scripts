@@ -9,10 +9,15 @@ local pfp
 local user
 local tag
 local userinfo = {}
+local utils = {}
 
 pcall(function()
 	userinfo = HttpService:JSONDecode(readfile("discordlibinfo.txt"));
 end)
+
+function utils:TweenObject(obj, properties, duration, ...)
+    TweenService:Create(obj, TweenInfo.new(duration, ...), properties):Play()
+end
 
 pfp = userinfo["pfp"] or "https://www.roblox.com/headshot-thumbnail/image?userId=".. game.Players.LocalPlayer.UserId .."&width=420&height=420&format=png"
 user =  userinfo["user"] or game.Players.LocalPlayer.Name
@@ -2646,14 +2651,26 @@ function DiscordLib:Window(text)
 					if DropTog == false then
 						DropdownFrameMain.Visible = true
 						DropdownFrameMainOutline.Visible = true
-						Dropdown.Size = UDim2.new(0, 403, 0, 73 + DropdownFrameMainOutline.AbsoluteSize.Y)
-						ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						utils:TweenObject(Dropdown, {
+							Size = UDim2.new(0, 403, 0, 73 + DropdownFrameMainOutline.AbsoluteSize.Y)
+						}, 0.3)
+						-- Dropdown.Size = UDim2.new(0, 403, 0, 73 + DropdownFrameMainOutline.AbsoluteSize.Y)
+						utils:TweenObject(ChannelHolder, {
+							CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						}, 0.3)
+						-- ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
 						
 					else
-						Dropdown.Size = UDim2.new(0, 403, 0, 73)
+						-- Dropdown.Size = UDim2.new(0, 403, 0, 73)
+						utils:TweenObject(Dropdown, {
+							Size =  UDim2.new(0, 403, 0, 73)
+						}, 0.3)
+						utils:TweenObject(ChannelHolder, {
+							CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						}, 0.3)
 						DropdownFrameMain.Visible = false
 						DropdownFrameMainOutline.Visible = false
-						ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						-- ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
 					end
 					DropTog = not DropTog
 				end)
@@ -2714,14 +2731,14 @@ function DiscordLib:Window(text)
 					Item.MouseButton1Click:Connect(function()
 						CurrentSelectedText.Text = v
 						pcall(callback, v)
-						TweenService:Create(Dropdown, TweenInfo.new(0.5), {
+						utils:TweenObject(Dropdown, {
 							Size = UDim2.new(0, 403, 0, 73)
-						}):Play()
+						}, 0.5)
 						DropdownFrameMain.Visible = false
 						DropdownFrameMainOutline.Visible = false
-						TweenService:Create(ChannelHolder, TweenInfo.new(0.5), {
+						utils:TweenObject(ChannelHolder, {
 							CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
-						}):Play()
+						}, 0.5)
 						DropTog = not DropTog
 					end)
 					
@@ -2745,13 +2762,19 @@ function DiscordLib:Window(text)
 					
 					itemcount = 0
 					framesize = 0
-					DropItemHolder.Size = UDim2.new(0, 385, 0, 0)
+					utils:TweenObject(DropItemHolder, {
+						Size = UDim2.new(0, 385, 0, 0)
+					},0.3)
+					utils:TweenObject(ChannelHolder, {
+						Size = UDim2.new(0, 385, 0, 0)
+					},0.3)
+					-- DropItemHolder.Size = UDim2.new(0, 385, 0, 0)
 					DropdownFrameMain.Size = UDim2.new(0, 392, 0, 0)
 					DropdownFrameMainOutline.Size = UDim2.new(0, 396, 0, 0)
 					Dropdown.Size = UDim2.new(0, 403, 0, 73)
 					DropdownFrameMain.Visible = false
 					DropdownFrameMainOutline.Visible = false
-					ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+					-- ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
 				end
 
 				function DropFunc:Refresh(_new)
@@ -2819,10 +2842,14 @@ function DiscordLib:Window(text)
 						Item.MouseButton1Click:Connect(function()
 							CurrentSelectedText.Text = v
 							pcall(callback, v)
-							Dropdown.Size = UDim2.new(0, 403, 0, 73)
+							utils:TweenObject(Dropdown, {
+								Size = UDim2.new(0, 403, 0, 73)
+							}, 0.5)
 							DropdownFrameMain.Visible = false
 							DropdownFrameMainOutline.Visible = false
-							ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+							utils:TweenObject(ChannelHolder, {
+								CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+							}, 0.5)
 							DropTog = not DropTog
 						end)
 						
@@ -2887,12 +2914,16 @@ function DiscordLib:Window(text)
 					end)
 
 					Item.MouseButton1Click:Connect(function()
-						CurrentSelectedText.Text = textadd
-						pcall(callback, textadd)
-						Dropdown.Size = UDim2.new(0, 403, 0, 73)
+						CurrentSelectedText.Text = v
+						pcall(callback, v)
+						utils:TweenObject(Dropdown, {
+							Size = UDim2.new(0, 403, 0, 73)
+						}, 0.5)
 						DropdownFrameMain.Visible = false
 						DropdownFrameMainOutline.Visible = false
-						ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						utils:TweenObject(ChannelHolder, {
+							CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						}, 0.5)
 						DropTog = not DropTog
 					end)
 
@@ -3363,4 +3394,127 @@ function DiscordLib:Window(text)
 	return ServerHold
 end
 
-return DiscordLib
+local win = DiscordLib:Window("discord library")
+
+local serv = win:Server("Preview", "")
+
+local btns = serv:Channel("Buttons")
+
+btns:Button(
+    "Kill all",
+    function()
+        DiscordLib:Notification("Notification", "Killed everyone!", "Okay!")
+    end
+)
+
+btns:Seperator()
+
+btns:Button(
+    "Get max level",
+    function()
+        DiscordLib:Notification("Notification", "Max level!", "Okay!")
+    end
+)
+
+local tgls = serv:Channel("Toggles")
+
+tgls:Toggle(
+    "Auto-Farm",
+    false,
+    function(bool)
+        print(bool)
+    end
+)
+
+local sldrs = serv:Channel("Sliders")
+
+local sldr =
+    sldrs:Slider(
+    "Slide me!",
+    0,
+    1000,
+    400,
+    function(t)
+        print(t)
+    end
+)
+
+sldrs:Button(
+    "Change to 50",
+    function()
+        sldr:Change(50)
+    end
+)
+
+local drops = serv:Channel("Dropdowns")
+
+local drop =
+    drops:Dropdown(
+    "Pick me!",
+    {"Option 1", "Option 2", "Option 3", "Option 4", "Option 5"},
+    function(bool)
+        print(bool)
+    end
+)
+
+drops:Button(
+    "Clear",
+    function()
+        drop:Clear()
+    end
+)
+
+drops:Button(
+    "Add option",
+    function()
+        drop:Add("Option")
+    end
+)
+
+drops:Button(
+    "Refresh",
+    function()
+        drop:Refresh({'LOL', 'BOZO'})
+    end
+)
+
+local clrs = serv:Channel("Colorpickers")
+
+clrs:Colorpicker(
+    "ESP Color",
+    Color3.fromRGB(255, 1, 1),
+    function(t)
+        print(t)
+    end
+)
+
+local textbs = serv:Channel("Textboxes")
+
+textbs:Textbox(
+    "Gun power",
+    "Type here!",
+    true,
+    function(t)
+        print(t)
+    end
+)
+
+local lbls = serv:Channel("Labels")
+
+lbls:Label("This is just a label.")
+
+local bnds = serv:Channel("Binds")
+
+bnds:Bind(
+    "Kill bind",
+    Enum.KeyCode.RightShift,
+    function()
+        print("Killed everyone!")
+    end
+)
+
+serv:Channel("by dawid#7205")
+
+win:Server("Main", "http://www.roblox.com/asset/?id=6031075938")
+
+-- return DiscordLib
