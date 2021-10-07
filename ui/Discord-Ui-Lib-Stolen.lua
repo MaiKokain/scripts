@@ -2714,10 +2714,14 @@ function DiscordLib:Window(text)
 					Item.MouseButton1Click:Connect(function()
 						CurrentSelectedText.Text = v
 						pcall(callback, v)
-						Dropdown.Size = UDim2.new(0, 403, 0, 73)
+						TweenService:Create(Dropdown, TweenInfo.new(0.5), {
+							Size = UDim2.new(0, 403, 0, 73)
+						}):Play()
 						DropdownFrameMain.Visible = false
 						DropdownFrameMainOutline.Visible = false
-						ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						TweenService:Create(ChannelHolder, TweenInfo.new(0.5), {
+							CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+						}):Play()
 						DropTog = not DropTog
 					end)
 					
