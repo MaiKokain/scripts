@@ -2749,6 +2749,86 @@ function DiscordLib:Window(text)
 					DropdownFrameMainOutline.Visible = false
 					ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
 				end
+
+				function DropFunc:Refresh(_new)
+					_new = _new or {"Booty", "Shawty"}
+					for i,v in next, DropItemHolder:GetChildren() do
+						if v.Name == "Item" then
+							v:Destroy()
+						end
+					end
+					itemcount = 0
+					framesize = 0
+
+					for i,v in next, _new do
+						itemcount = itemcount + 1
+						
+						if itemcount == 1 then
+							framesize = 29
+						elseif itemcount == 2 then
+							framesize = 58
+						elseif itemcount >= 3 then
+							framesize = 87
+						end
+						
+						local Item = Instance.new("TextButton")
+						local ItemCorner = Instance.new("UICorner")
+						local ItemText = Instance.new("TextLabel")
+	
+						Item.Name = "Item"
+						Item.Parent = DropItemHolder
+						Item.BackgroundColor3 = Color3.fromRGB(42, 44, 48)
+						Item.Size = UDim2.new(0, 379, 0, 29)
+						Item.AutoButtonColor = false
+						Item.Font = Enum.Font.SourceSans
+						Item.Text = ""
+						Item.TextColor3 = Color3.fromRGB(0, 0, 0)
+						Item.TextSize = 14.000
+						Item.BackgroundTransparency = 1
+	
+						ItemCorner.CornerRadius = UDim.new(0, 4)
+						ItemCorner.Name = "ItemCorner"
+						ItemCorner.Parent = Item
+	
+						ItemText.Name = "ItemText"
+						ItemText.Parent = Item
+						ItemText.BackgroundColor3 = Color3.fromRGB(42, 44, 48)
+						ItemText.BackgroundTransparency = 1.000
+						ItemText.Position = UDim2.new(0.0211081803, 0, 0, 0)
+						ItemText.Size = UDim2.new(0, 192, 0, 29)
+						ItemText.Font = Enum.Font.Gotham
+						ItemText.TextColor3 = Color3.fromRGB(212, 212, 212)
+						ItemText.TextSize = 14.000
+						ItemText.TextXAlignment = Enum.TextXAlignment.Left
+						ItemText.Text = v
+						
+						Item.MouseEnter:Connect(function()
+							ItemText.TextColor3 = Color3.fromRGB(255,255,255)
+							Item.BackgroundTransparency = 0
+						end)
+						
+						Item.MouseLeave:Connect(function()
+							ItemText.TextColor3 = Color3.fromRGB(212, 212, 212)
+							Item.BackgroundTransparency = 1
+						end)
+						
+						Item.MouseButton1Click:Connect(function()
+							CurrentSelectedText.Text = v
+							pcall(callback, v)
+							Dropdown.Size = UDim2.new(0, 403, 0, 73)
+							DropdownFrameMain.Visible = false
+							DropdownFrameMainOutline.Visible = false
+							ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+							DropTog = not DropTog
+						end)
+						
+						DropItemHolder.CanvasSize = UDim2.new(0,0,0,DropItemHolderLayout.AbsoluteContentSize.Y)
+						
+						DropItemHolder.Size = UDim2.new(0, 385, 0, framesize)
+						DropdownFrameMain.Size = UDim2.new(0, 392, 0, framesize + 6)
+						DropdownFrameMainOutline.Size = UDim2.new(0, 396, 0, framesize + 10)
+					end	
+				end
 				
 				function DropFunc:Add(textadd)
 					itemcount = itemcount + 1
@@ -3155,6 +3235,18 @@ function DiscordLib:Window(text)
 				end)
 				
 				ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+
+				local TextBoxFunctions = {}
+				function TextBoxFunctions:UpdateName(new_name)
+					new_name = new_name or "New Button Name"
+					TextBox.Text = new_name
+				end
+
+				function TextBoxFunctions:UpdateCallback(new_callback)
+					callback = new_callback or function() end
+				end
+
+				return TextBoxFunctions
 			end
 			
 			function ChannelContent:Label(text)
@@ -3186,6 +3278,14 @@ function DiscordLib:Window(text)
 				LabelTitle.TextXAlignment = Enum.TextXAlignment.Left
 				
 				ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+				local LabelFunctions = {}
+
+				function LabelFunctions:UpdateText(new_name)
+					new_name = new_name or "New Label Text"
+					LabelTitle.Text = new_name
+				end
+			
+				return LabelFunctions
 			end
 			
 			function ChannelContent:Bind(text, presetbind, callback)
