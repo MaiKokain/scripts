@@ -2765,16 +2765,25 @@ function DiscordLib:Window(text)
 					utils:TweenObject(DropItemHolder, {
 						Size = UDim2.new(0, 385, 0, 0)
 					},0.3)
-					utils:TweenObject(ChannelHolder, {
+					utils:TweenObject(DropdownFrameMain, {
 						Size = UDim2.new(0, 385, 0, 0)
-					},0.3)
+					}, 0.3)
+					utils:TweenObject(DropdownFrameOutline, {
+						Size = UDim2.new(0, 396, 0, 0)
+					}, 0.3)
+					utils:TweenObject(Dropdown, {
+						Size = UDim2.new(0, 403, 0, 73)
+					}, 0.3)
 					-- DropItemHolder.Size = UDim2.new(0, 385, 0, 0)
-					DropdownFrameMain.Size = UDim2.new(0, 392, 0, 0)
-					DropdownFrameMainOutline.Size = UDim2.new(0, 396, 0, 0)
-					Dropdown.Size = UDim2.new(0, 403, 0, 73)
+					-- DropdownFrameMain.Size = UDim2.new(0, 392, 0, 0)
+					-- DropdownFrameMainOutline.Size = UDim2.new(0, 396, 0, 0)
+					-- Dropdown.Size = UDim2.new(0, 403, 0, 73)
 					DropdownFrameMain.Visible = false
 					DropdownFrameMainOutline.Visible = false
 					-- ChannelHolder.CanvasSize = UDim2.new(0,0,0,ChannelHolderLayout.AbsoluteContentSize.Y)
+					utils:TweenObject(ChannelHolder, {
+						CanvasSize = UDim2.new(0, 385, 0, 0)
+					},0.3)
 				end
 
 				function DropFunc:Refresh(_new)
@@ -2853,7 +2862,10 @@ function DiscordLib:Window(text)
 							DropTog = not DropTog
 						end)
 						
-						DropItemHolder.CanvasSize = UDim2.new(0,0,0,DropItemHolderLayout.AbsoluteContentSize.Y)
+						utils:TweenObject(DropItemHolder, {
+							CanvasSize = UDim2.new(0,0,0,DropItemHolderLayout.AbsoluteContentSize.Y)
+						}, 0.3)
+						-- DropItemHolder.CanvasSize = UDim2.new(0,0,0,DropItemHolderLayout.AbsoluteContentSize.Y)
 						
 						DropItemHolder.Size = UDim2.new(0, 385, 0, framesize)
 						DropdownFrameMain.Size = UDim2.new(0, 392, 0, framesize + 6)
@@ -2914,8 +2926,12 @@ function DiscordLib:Window(text)
 					end)
 
 					Item.MouseButton1Click:Connect(function()
-						CurrentSelectedText.Text = v
-						pcall(callback, v)
+						for i = 0, #textadd do
+							CurrentSelectedText.Text = string.sub(textadd, 1, i)
+							wait(0.04)
+						end
+						-- CurrentSelectedText.Text = Item.Name
+						pcall(callback, Item.Name)
 						utils:TweenObject(Dropdown, {
 							Size = UDim2.new(0, 403, 0, 73)
 						}, 0.5)
@@ -2927,7 +2943,10 @@ function DiscordLib:Window(text)
 						DropTog = not DropTog
 					end)
 
-					DropItemHolder.CanvasSize = UDim2.new(0,0,0,DropItemHolderLayout.AbsoluteContentSize.Y)
+					utils:TweenObject(DropItemHolder, {
+						CanvasSize = UDim2.new(0,0,0,DropItemHolderLayout.AbsoluteContentSize.Y)
+					}, 0.3)
+					-- DropItemHolder.CanvasSize = UDim2.new(0,0,0,DropItemHolderLayout.AbsoluteContentSize.Y)
 
 					DropItemHolder.Size = UDim2.new(0, 385, 0, framesize)
 					DropdownFrameMain.Size = UDim2.new(0, 392, 0, framesize + 6)
