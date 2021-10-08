@@ -2993,6 +2993,10 @@ function DiscordLib:Window(text)
 				local ColorSelection = Instance.new("ImageLabel")
 				local Hue = Instance.new("ImageLabel")
 				local HueCorner = Instance.new("UICorner")
+				
+				-- local RainbowToggle = Instance.new('TextButton')
+				-- local RainbowToggleCorner = Instance.new("UICorner")
+
 				local HueGradient = Instance.new("UIGradient")
 				local HueSelection = Instance.new("ImageLabel")
 				local PresetClr = Instance.new("Frame")
@@ -3050,7 +3054,7 @@ function DiscordLib:Window(text)
 				ColorCorner.CornerRadius = UDim.new(0, 3)
 				ColorCorner.Name = "ColorCorner"
 				ColorCorner.Parent = Color
-
+				
 				ColorSelection.Name = "ColorSelection"
 				ColorSelection.Parent = Color
 				ColorSelection.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -3103,6 +3107,18 @@ function DiscordLib:Window(text)
 				PresetClrCorner.Name = "PresetClrCorner"
 				PresetClrCorner.Parent = PresetClr
 				
+				-- RainbowToggle.Name = "RainbowToggle"
+				-- RainbowToggle.Parent = ColorpickerFrame
+				-- RainbowToggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+				-- RainbowToggle.Position = UDim2.new(0.846153855, 0, 0.3, 0)
+				-- RainbowToggle.Size = UDim2.new(0, 25, 0, 25)
+				-- RainbowToggle.ZIndex = 10
+				-- RainbowToggle.Text = ""
+
+				-- RainbowToggleCorner.CornerRadius = UDim.new(1,0)
+				-- RainbowToggleCorner.Name = "RainbowToggleCorner"
+				-- RainbowToggleCorner.Parent = RainbowToggle
+
 				local function UpdateColorPicker(nope)
 					PresetClr.BackgroundColor3 = Color3.fromHSV(ColorH, ColorS, ColorV)
 					Color.BackgroundColor3 = Color3.fromHSV(ColorH, 1, 1)
@@ -3302,6 +3318,19 @@ function DiscordLib:Window(text)
 								{ TextTransparency = 0 }
 							):Play()
 						end
+					elseif not ep and disapper then
+						TweenService:Create(
+							TextBox,
+							TweenInfo.new(0.3, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+							{ TextTransparency = 1 }
+						):Play()
+						wait(0.4)
+						TextBox.Text = ""
+						TweenService:Create(
+							TextBox,
+							TweenInfo.new(0.5, Enum.EasingStyle.Linear, Enum.EasingDirection.In),
+							{ TextTransparency = 0 }
+						):Play()
 					end
 				end)
 				
@@ -3429,6 +3458,5 @@ function DiscordLib:Window(text)
 	end
 	return ServerHold
 end
-
 
 return DiscordLib
