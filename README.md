@@ -1,1 +1,3 @@
-All Script that is Released in this [repository](https://github.com/MaiKokain/scripts). Are all Open Sourced. Credit is not Required If you Used Any of the code from one of the Script.
+All scripts that is released in this [repo](https://github.com/maikokain/scripts) are all open sourced. Credit is not required if used.
+
+[Discord](https://discord.com/users/722647978577363026)
