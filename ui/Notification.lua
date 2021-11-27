@@ -119,7 +119,8 @@ local function CreateNormalNotificationArguments()
 			BackgroundTransparency = 1,
 			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
             ImageRectOffset = Vector2.new(0,0),
-            ImageRectSize = Vector2.new(0,0)	
+            ImageRectSize = Vector2.new(0,0),
+			ImageColor3 = Color3.fromRGB(255,255,255)
 		},
 
 		GradientSettings = {
