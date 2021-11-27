@@ -241,6 +241,7 @@ NotificationTable.CreateNotification = function(TitleData, Text, Image, Settings
 	Icon.Name = "Icon"
 	Icon.Parent = _Template
 	Icon.BackgroundColor3 = IconSettings.BackgroundColor3
+	Icon.ImageColor3 = IconSettings.ImageColor3
 	Icon.BackgroundTransparency = IconSettings.BackgroundTransparency
 	Icon.Position = UDim2.new(0.0277603213, 0, 0.182097465, 0)
 	Icon.Size = UDim2.new(0, 40, 0, 40)
